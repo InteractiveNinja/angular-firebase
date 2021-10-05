@@ -9,16 +9,18 @@ import { Store } from '../store';
 import { AuthModule } from '../auth/auth.module';
 
 // containers
-import { AppComponent } from './containers/app/app.component';
+import { AppComponent } from './containers/app.component';
 
 // components
+import { AppNavComponent } from './components/app-nav/app-nav.component';
+import { AppHeaderComponent } from './components/app-header/app-header.component';
 
 // routes
 export const ROUTES: Routes = [];
 
 @NgModule({
   imports: [BrowserModule, RouterModule.forRoot(ROUTES), AuthModule],
-  declarations: [AppComponent],
+  declarations: [AppComponent, AppNavComponent, AppHeaderComponent],
   providers: [Store],
   bootstrap: [AppComponent],
 })
