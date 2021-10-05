@@ -3,7 +3,7 @@
     "rules": "database.rules.json"
   },
   "hosting": {
-    "public": "",
+    "public": "./dist/angular-pro-final",
     "ignore": [
       "firebase.json",
       ".firebaserc",
