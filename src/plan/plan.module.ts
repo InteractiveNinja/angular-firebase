@@ -5,6 +5,9 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/shared/guards/auth.guard';
 
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { PlanService } from './plan.service';
+
 export const ROUTES: Routes = [
   {
     path: 'plan',
@@ -15,7 +18,13 @@ export const ROUTES: Routes = [
 
 @NgModule({
   declarations: [PlanComponent],
-  imports: [CommonModule, ReactiveFormsModule, RouterModule.forChild(ROUTES)],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(ROUTES),
+    AngularFireDatabaseModule,
+  ],
   exports: [PlanComponent],
+  providers: [PlanService],
 })
 export class PlanModule {}
