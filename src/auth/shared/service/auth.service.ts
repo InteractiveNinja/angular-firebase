@@ -35,6 +35,9 @@ export class AuthService {
   loginUser(email: string, password: string) {
     return from(this.af.signInWithEmailAndPassword(email, password));
   }
+  get authState() {
+    return this.af.authState;
+  }
 
   logoutUser() {
     return from(this.af.signOut());
