@@ -1,13 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Plan, PlanService } from '../plan.service';
+import { Plan, PlanService } from '../../plan.service';
 import { Observable, Subscription } from 'rxjs';
-import { Store } from '../../store';
+import { Store } from '../../../store';
 
 @Component({
-  selector: 'plan',
-  template: `Plans: {{ plan$ | async | json }}`,
+  selector: 'plans',
+  styleUrls: ['./plans.component.scss'],
+  template: `<div class="plan">
+    <div class="plan__title"></div>
+    <a class="btn__add" [routerLink]="['/plans/new']">Add</a>
+    <div *ngIf="plan$ | async as meals">
+      <div *ngIf="!meals.length">Nichts gefunden</div>
+    </div>
+  </div>`,
 })
-export class PlanComponent implements OnInit, OnDestroy {
+export class PlansComponent implements OnInit, OnDestroy {
   plan$: Observable<Plan[]> | undefined;
   subscription: Subscription | undefined;
 
