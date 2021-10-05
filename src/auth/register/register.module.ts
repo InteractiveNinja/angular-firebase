@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { RegisterCompoent } from './containers/register.compoent';
+import { RegisterComponent } from './containers/register.component';
 import { SharedModule } from '../shared/shared.module';
 
 export const ROUTES: Routes = [
   {
     path: '',
-    component: RegisterCompoent,
+    component: RegisterComponent,
   },
 ];
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(ROUTES), SharedModule],
-  declarations: [RegisterCompoent],
+  declarations: [RegisterComponent],
 })
 export class RegisterModule {}
