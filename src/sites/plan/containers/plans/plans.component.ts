@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./plans.component.scss'],
   template: ` <div class="plan">
     <div class="plan__title">
-      <img src="assets/food.svg" />
+      <img src="assets/chevron-right.svgs" />
       <h1>Pläne</h1>
       <a class="btn__add" [routerLink]="['/plans/new']">Add</a>
     </div>
