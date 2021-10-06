@@ -7,6 +7,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     <div class="app-nav">
       <div class="wrapper">
         <a routerLink="/plans" routerLinkActive="active">Plan</a>
+        <a routerLink="/produkte" routerLinkActive="active">Produkte</a>
       </div>
     </div>
   `,

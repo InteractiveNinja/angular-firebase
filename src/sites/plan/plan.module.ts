@@ -3,7 +3,7 @@ import { PlansComponent } from './containers/plans/plans.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '../auth/shared/guards/auth.guard';
+import { AuthGuard } from '../../auth/shared/guards/auth.guard';
 
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { PlanService } from './service/plan.service';
@@ -18,7 +18,7 @@ export const ROUTES: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'plans/new', component: PlanComponent, canActivate: [AuthGuard] },
-  { path: ':id', component: PlanComponent, canActivate: [AuthGuard] },
+  { path: 'plans/:id', component: PlanComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

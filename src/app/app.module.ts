@@ -14,8 +14,9 @@ import { AppComponent } from './containers/app.component';
 // components
 import { AppNavComponent } from './components/app-nav/app-nav.component';
 import { AppHeaderComponent } from './components/app-header/app-header.component';
-import { PlansComponent } from '../sites/containers/plans/plans.component';
-import { PlanModule } from '../sites/plan.module';
+import { PlansComponent } from '../sites/plan/containers/plans/plans.component';
+import { PlanModule } from '../sites/plan/plan.module';
+import { ProdukteModule } from '../sites/produkte/produkte.module';
 
 // routes
 export const ROUTES: Routes = [
@@ -32,6 +33,7 @@ export const ROUTES: Routes = [
     RouterModule.forRoot(ROUTES),
     AuthModule,
     PlanModule,
+    ProdukteModule,
   ],
   declarations: [AppComponent, AppNavComponent, AppHeaderComponent],
   providers: [Store],

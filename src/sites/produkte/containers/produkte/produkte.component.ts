@@ -1,17 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Plan, PlanService } from '../../service/plan.service';
+import { Produkt, ProdukteService } from '../../service/produkte.service';
 import { Observable, Subscription } from 'rxjs';
-import { Store } from '../../../store';
+import { Store } from '../../../../store';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'plans',
-  styleUrls: ['./plans.component.scss'],
+  styleUrls: ['./produkte.component.scss'],
   template: ` <div class="plan">
     <div class="plan__title">
-      <img src="assets/food.svg" />
-      <h1>Pläne</h1>
-      <a class="btn__add" [routerLink]="['/plans/new']">Add</a>
+      <img src="assets/chevron-right.svg" />
+      <h1>Produkte</h1>
+      <a class="btn__add" [routerLink]="['/produkte/new']">Add</a>
     </div>
     <div *ngIf="plan$ | async as plans; else loading">
       <plan-item
@@ -31,29 +31,29 @@ import { Router } from '@angular/router';
     </ng-template>
   </div>`,
 })
-export class PlansComponent implements OnInit, OnDestroy {
-  plan$: Observable<Plan[]> | undefined;
+export class ProdukteComponent implements OnInit, OnDestroy {
+  plan$: Observable<Produkt[]> | undefined;
   subscription: Subscription | undefined;
 
   constructor(
     private store: Store,
-    private service: PlanService,
+    private service: ProdukteService,
     private router: Router
   ) {}
 
   ngOnInit() {
     this.subscription = this.service.plan$?.subscribe();
-    this.plan$ = this.store.select('plans');
+    this.plan$ = this.store.select('produkte');
   }
 
   ngOnDestroy() {
     this.subscription?.unsubscribe();
   }
 
-  edit(plan: Plan) {
-    this.router.navigate(['/plans/new', { id: plan.$key }]);
+  edit(plan: Produkt) {
+    this.router.navigate(['/produkte/new', { id: plan.$key }]);
   }
-  delete(plan: Plan) {
+  delete(plan: Produkt) {
     if (confirm(`Möchtest du den Eintrag "${plan.title}" löschen?`))
       this.service.removePlan(plan);
   }

@@ -4,8 +4,8 @@ import {
   AngularFireList,
   SnapshotAction,
 } from '@angular/fire/compat/database';
-import { Store } from '../../store';
-import { AuthService, User } from '../../auth/shared/service/auth.service';
+import { Store } from '../../../store';
+import { AuthService, User } from '../../../auth/shared/service/auth.service';
 import { from, Observable, of } from 'rxjs';
 import { filter, map, tap } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -66,9 +66,10 @@ export class PlanService {
     );
   }
 
-  editPlan({ title, $key, date, description }: Plan) {
+  editPlan(plan: Plan) {
+    const { $key, date, description, title } = plan;
     return this.fb
-      .list<Plan>(`plans/${this.useruid}`)
-      .update($key, { title, description, date });
+      .object<Plan>(`plans/${this.useruid}/${$key}`)
+      .update({ date, description, title });
   }
 }

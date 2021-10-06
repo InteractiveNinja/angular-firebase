@@ -1,17 +1,20 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 import { distinctUntilChanged, pluck } from 'rxjs/operators';
 import { User } from './auth/shared/service/auth.service';
-import { Plan } from './sites/service/plan.service';
+import { Plan } from './sites/plan/service/plan.service';
+import { Produkt } from './sites/produkte/service/produkte.service';
 
 export interface State {
   user: User | undefined;
   plans: Plan[] | undefined;
+  produkte: Produkt[] | undefined;
   [key: string]: any;
 }
 
 const state: State = {
   user: undefined,
   plans: undefined,
+  produkte: undefined,
 };
 
 export class Store {
