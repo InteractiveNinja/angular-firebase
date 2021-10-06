@@ -49,7 +49,7 @@
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
   border-radius: 3px;
   border: 1px solid #c1cedb;
-  width: 400px;
+  width: 500px;
   margin: 50px auto;
   padding: 30px;
   &__action {
@@ -93,4 +93,7 @@
   &:hover {
     background-color: red;
   }
+}
+product-type {
+  justify-self: center;
 }

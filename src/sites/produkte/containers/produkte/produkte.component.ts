@@ -5,7 +5,7 @@ import { Store } from '../../../../store';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'plans',
+  selector: 'produkte',
   styleUrls: ['./produkte.component.scss'],
   template: ` <div class="plan">
     <div class="plan__title">
@@ -14,13 +14,13 @@ import { Router } from '@angular/router';
       <a class="btn__add" [routerLink]="['/produkte/new']">Add</a>
     </div>
     <div *ngIf="plan$ | async as plans; else loading">
-      <plan-item
+      <produkt-item
         class="message"
         *ngFor="let plan of plans"
         [plan]="plan"
         (edit)="edit($event)"
         (delete)="delete($event)"
-      ></plan-item>
+      ></produkt-item>
       <div class="message" *ngIf="!plans.length">
         <img src="assets/face.svg" />
         Nichts gefunden

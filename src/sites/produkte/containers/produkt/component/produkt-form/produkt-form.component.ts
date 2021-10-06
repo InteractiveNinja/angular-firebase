@@ -7,17 +7,14 @@ import {
   Output,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Produkt } from '../../../service/produkte.service';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { pluck } from 'rxjs/operators';
+import { Produkt } from '../../../../service/produkte.service';
 
 @Component({
-  selector: 'plan-form',
+  selector: 'produkt-form',
   styleUrls: ['./produkt-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `<div class="auth-form">
-    <ng-content select="h1"></ng-content>
+    <ng-content select="h2"></ng-content>
     <form [formGroup]="form" (ngSubmit)="onSend()">
       <label>
         <input
@@ -47,6 +44,10 @@ import { pluck } from 'rxjs/operators';
           id=""
           placeholder="Preis"
         />
+      </label>
+      <label>
+        <h2>Produkt Typ</h2>
+        <product-type formControlName="type"></product-type>
       </label>
 
       <div class="auth-form__action">
@@ -81,6 +82,7 @@ export class ProduktFormComponent implements OnInit {
     title: ['', Validators.required],
     description: ['', Validators.required],
     price: ['', Validators.required],
+    type: ['verbrauch', Validators.required],
   });
 
   onSend() {

@@ -8,8 +8,9 @@ import { AuthGuard } from '../../auth/shared/guards/auth.guard';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { ProdukteService } from './service/produkte.service';
 import { ProduktComponent } from './containers/produkt/produkt.component';
-import { ProduktFormComponent } from './containers/produkt/component/produkt-form.component';
+import { ProduktFormComponent } from './containers/produkt/component/produkt-form/produkt-form.component';
 import { ProduktItemComponent } from './containers/produkte/components/produkt-item.component';
+import { ProduktTypeComponent } from './containers/produkt/component/product-type/produkt-type.component';
 
 export const ROUTES: Routes = [
   {
@@ -35,6 +36,7 @@ export const ROUTES: Routes = [
     ProduktComponent,
     ProduktFormComponent,
     ProduktItemComponent,
+    ProduktTypeComponent,
   ],
   imports: [
     CommonModule,

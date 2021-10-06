@@ -5,16 +5,16 @@ import { Observable } from 'rxjs';
 import { pluck, switchMap } from 'rxjs/operators';
 
 @Component({
-  selector: 'plan',
+  selector: 'produkte',
   styleUrls: ['./produkt.component.scss'],
   template: ` <div>
-    <plan-form
+    <produkt-form
       [produkt]="plan$ | async"
       (sendEdit)="editData($event)"
       (send)="saveData($event)"
     >
-      <h1>Produkt {{ (plan$ | async) ? 'bearbeiten' : 'erstellen' }}</h1>
-    </plan-form>
+      <h2>Produkt {{ (plan$ | async) ? 'bearbeiten' : 'erstellen' }}</h2>
+    </produkt-form>
   </div>`,
 })
 export class ProduktComponent implements OnInit {
@@ -36,13 +36,13 @@ export class ProduktComponent implements OnInit {
   }
 
   saveData(plan: Produkt) {
-    this.service.addPlan(plan).then(() => {
-      this.router.navigate(['/plans']);
-    });
+    this.service.addPlan(plan).then(() => this.goBack());
   }
   editData(plan: Produkt) {
-    this.service.editPlan(plan).then(() => {
-      this.router.navigate(['/plans']);
-    });
+    this.service.editPlan(plan).then(() => this.goBack());
+  }
+
+  goBack() {
+    this.router.navigate(['/produkte']);
   }
 }
