@@ -6,8 +6,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/shared/guards/auth.guard';
 
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-import { PlanService } from './plan.service';
+import { PlanService } from './service/plan.service';
 import { PlanComponent } from './containers/plan/plan.component';
+import { PlanFormComponent } from './containers/plan/component/plan-form.component';
+import { PlanItemComponent } from './containers/plans/components/plan-item.component';
 
 export const ROUTES: Routes = [
   {
@@ -16,10 +18,16 @@ export const ROUTES: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'plans/new', component: PlanComponent },
+  { path: ':id', component: PlanComponent },
 ];
 
 @NgModule({
-  declarations: [PlansComponent, PlanComponent],
+  declarations: [
+    PlansComponent,
+    PlanComponent,
+    PlanFormComponent,
+    PlanItemComponent,
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,

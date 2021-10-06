@@ -1,7 +1,7 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 import { distinctUntilChanged, pluck } from 'rxjs/operators';
 import { User } from './auth/shared/service/auth.service';
-import { Plan } from './plan/plan.service';
+import { Plan } from './plan/service/plan.service';
 
 export interface State {
   user: User | undefined;

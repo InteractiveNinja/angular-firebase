@@ -1,63 +1,60 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Plan, PlanService } from '../../service/plan.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
+import { mergeMap, pluck, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'plan',
   styleUrls: ['./plan.component.scss'],
-  template: ` <div class="auth-form">
-    <h1>Neuen Plan erstellen</h1>
-    <form [formGroup]="form" (ngSubmit)="onSend()">
-      <label>
-        <input
-          type="text"
-          name=""
-          placeholder="Titel"
-          formControlName="title"
-          id=""
-        />
-      </label>
-      <label>
-        <input
-          type="text"
-          name=""
-          placeholder="Beschreibung"
-          formControlName="description"
-          id=""
-        />
-      </label>
-      <label>
-        <input
-          type="datetime-local"
-          name=""
-          [valueAsNumber]="form.get('date')?.value | date: 'yyyy-MM-ddTHH:mm'"
-          formControlName="date"
-          id=""
-        />
-      </label>
-
-      <div class="auth-form__action">
-        <button [disabled]="form.invalid" type="submit">Speichern</button>
-      </div>
-      <div class="auth-form__action">
-        <button [routerLink]="['..']">Zurück</button>
-      </div>
-    </form>
+  template: ` <div>
+    <plan-form
+      [plan]="plan$ | async"
+      (sendEdit)="editData($event)"
+      (send)="saveData($event)"
+    >
+      <h1>Plan {{ (plan$ | async) ? 'bearbeiten' : 'erstellen' }}</h1>
+    </plan-form>
   </div>`,
 })
-export class PlanComponent implements OnInit {
-  constructor(private fb: FormBuilder) {}
+export class PlanComponent implements OnInit, OnDestroy {
+  plan$: Observable<Plan> | undefined;
 
-  form: FormGroup = this.fb.group({
-    title: ['', Validators.required],
-    description: ['', Validators.required],
-    date: [new Date(), Validators.required],
-  });
+  subscription: Subscription | undefined;
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private service: PlanService
+  ) {}
 
+  ngOnDestroy() {
+    this.subscription?.unsubscribe();
+  }
   ngOnInit() {
-    console.log(this.form.value);
+    this.plan$ = this.route.params.pipe(
+      pluck('id'),
+      switchMap((id) => {
+        return this.service.getPlan(id);
+      })
+    );
   }
 
-  onSend() {
-    console.log(this.form.value);
+  saveData(plan: Plan) {
+    this.service.addPlan(plan).then(() => {
+      this.router.navigate(['/plans']);
+    });
+  }
+  editData(plan: Plan) {
+    this.service.editPlan(plan).then(() => {
+      this.router.navigate(['/plans']);
+    });
   }
 }
