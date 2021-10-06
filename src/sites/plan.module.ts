@@ -17,8 +17,8 @@ export const ROUTES: Routes = [
     component: PlansComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'plans/new', component: PlanComponent },
-  { path: ':id', component: PlanComponent },
+  { path: 'plans/new', component: PlanComponent, canActivate: [AuthGuard] },
+  { path: ':id', component: PlanComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

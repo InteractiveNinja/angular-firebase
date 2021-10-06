@@ -14,8 +14,8 @@ import { AppComponent } from './containers/app.component';
 // components
 import { AppNavComponent } from './components/app-nav/app-nav.component';
 import { AppHeaderComponent } from './components/app-header/app-header.component';
-import { PlansComponent } from '../plan/containers/plans/plans.component';
-import { PlanModule } from '../plan/plan.module';
+import { PlansComponent } from '../sites/containers/plans/plans.component';
+import { PlanModule } from '../sites/plan.module';
 
 // routes
 export const ROUTES: Routes = [

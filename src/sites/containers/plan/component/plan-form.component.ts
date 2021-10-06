@@ -62,9 +62,7 @@ export class PlanFormComponent implements OnInit {
   @Input()
   plan: Plan | null | undefined;
   ngOnInit() {
-    this.form.get('title')?.patchValue(this.plan?.title);
-    this.form.get('description')?.patchValue(this.plan?.description);
-    this.form.get('date')?.patchValue(this.plan?.date);
+    if (this.plan) this.form.patchValue(this.plan);
   }
 
   @Output()

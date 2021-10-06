@@ -25,19 +25,15 @@ import { mergeMap, pluck, switchMap } from 'rxjs/operators';
     </plan-form>
   </div>`,
 })
-export class PlanComponent implements OnInit, OnDestroy {
+export class PlanComponent implements OnInit {
   plan$: Observable<Plan> | undefined;
 
-  subscription: Subscription | undefined;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private service: PlanService
   ) {}
 
-  ngOnDestroy() {
-    this.subscription?.unsubscribe();
-  }
   ngOnInit() {
     this.plan$ = this.route.params.pipe(
       pluck('id'),
