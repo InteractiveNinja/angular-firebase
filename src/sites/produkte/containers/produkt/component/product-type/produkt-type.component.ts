@@ -1,10 +1,12 @@
 import { ChangeDetectionStrategy, Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
 export const TYPE_CONTROL_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => ProduktTypeComponent),
   multi: true,
 };
+
 @Component({
   selector: 'product-type',
   styleUrls: ['./product-type.component.scss'],

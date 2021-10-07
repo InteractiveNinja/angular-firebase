@@ -1,16 +1,8 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { Plan, PlanService } from '../../service/plan.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-import { mergeMap, pluck, switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { pluck, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'plan',
@@ -48,6 +40,7 @@ export class PlanComponent implements OnInit {
       this.router.navigate(['/plans']);
     });
   }
+
   editData(plan: Plan) {
     this.service.editPlan(plan).then(() => {
       this.router.navigate(['/plans']);

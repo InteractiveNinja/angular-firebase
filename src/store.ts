@@ -8,6 +8,7 @@ export interface State {
   user: User | undefined;
   plans: Plan[] | undefined;
   produkte: Produkt[] | undefined;
+
   [key: string]: any;
 }
 

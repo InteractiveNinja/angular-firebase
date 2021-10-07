@@ -3,6 +3,7 @@ import { Produkt, ProdukteService } from '../../service/produkte.service';
 import { Observable, Subscription } from 'rxjs';
 import { Store } from '../../../../store';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'produkte',
   styleUrls: ['./produkte.component.scss'],
@@ -52,6 +53,7 @@ export class ProdukteComponent implements OnInit, OnDestroy {
   edit(plan: Produkt) {
     this.router.navigate(['/produkte/new', { id: plan.$key }]);
   }
+
   delete(plan: Produkt) {
     if (confirm(`Möchtest du den Eintrag "${plan.title}" löschen?`))
       this.service.removePlan(plan);

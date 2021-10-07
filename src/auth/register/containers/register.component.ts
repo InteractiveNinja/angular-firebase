@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AuthService } from '../../shared/service/auth.service';
 import firebase from 'firebase/compat';
-import FirebaseError = firebase.FirebaseError;
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,9 +14,9 @@ import { Router } from '@angular/router';
   </auth-form>`,
 })
 export class RegisterComponent {
-  constructor(private service: AuthService, private router: Router) {}
-
   error: string | undefined;
+
+  constructor(private service: AuthService, private router: Router) {}
 
   registerUser(event: FormGroup) {
     const { password, email } = event.value;

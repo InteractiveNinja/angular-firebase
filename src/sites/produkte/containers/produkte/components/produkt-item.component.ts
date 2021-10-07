@@ -1,12 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Produkt } from '../../../service/produkte.service';
-import { ActivatedRoute } from '@angular/router';
-import { pluck } from 'rxjs/operators';
 
 @Component({
   selector: 'produkt-item',
   styleUrls: ['./produkt-items.component.scss'],
-  template: `<div class="item">
+  template: ` <div class="item">
     <div class="item__box">
       <div>
         {{ plan?.title }}

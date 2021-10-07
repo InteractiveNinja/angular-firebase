@@ -1,12 +1,7 @@
-import { Injectable, OnInit } from '@angular/core';
-import {
-  AngularFireDatabase,
-  AngularFireList,
-  SnapshotAction,
-} from '@angular/fire/compat/database';
+import { Injectable } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Store } from '../../../store';
-import { AuthService, User } from '../../../auth/shared/service/auth.service';
-import { from, Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { filter, map, tap } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
@@ -14,6 +9,14 @@ export interface Produkt {
   title: string;
   description: string;
   price: number;
+  type: string;
+  verbrauch: {
+    menge: number;
+  };
+  gebrauch: {
+    von: string;
+    bis: string;
+  };
   $key: string;
 }
 
@@ -21,6 +24,7 @@ export interface Produkt {
 export class ProdukteService {
   plan$: Observable<Produkt[]> | undefined;
   useruid: string | undefined;
+
   constructor(
     private fb: AngularFireDatabase,
     private store: Store,
@@ -38,6 +42,9 @@ export class ProdukteService {
                 title: mm.payload.val()?.title || '',
                 description: mm.payload.val()?.description || '',
                 price: mm.payload.val()?.price || 0,
+                type: mm.payload.val()?.type || '',
+                verbrauch: mm.payload.val()?.verbrauch || { menge: 0 },
+                gebrauch: mm.payload.val()?.gebrauch || { von: '', bis: '' },
                 $key: mm.key || '',
               }));
               return produkts;
@@ -53,6 +60,7 @@ export class ProdukteService {
   addPlan(plan: Produkt) {
     return this.fb.list<Produkt>(`produkte/${this.useruid}`).push(plan);
   }
+
   removePlan(plan: Produkt) {
     return this.fb
       .list<Produkt>(`produkte/${this.useruid}/${plan.$key}`)

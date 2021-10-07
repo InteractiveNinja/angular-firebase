@@ -10,7 +10,7 @@ import { User } from '../../../auth/shared/service/auth.service';
 @Component({
   selector: 'app-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `<div class="app-header">
+  template: ` <div class="app-header">
     <div class="wrapper">
       <img src="/assets/logo.svg" />
       <div *ngIf="user?.auth" class="app-header__user-info">

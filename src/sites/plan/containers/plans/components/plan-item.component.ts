@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Plan } from '../../../service/plan.service';
-import { ActivatedRoute } from '@angular/router';
-import { pluck } from 'rxjs/operators';
 
 @Component({
   selector: 'plan-item',

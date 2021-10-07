@@ -13,7 +13,7 @@ import { Produkt } from '../../../../service/produkte.service';
   selector: 'produkt-form',
   styleUrls: ['./produkt-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `<div class="auth-form">
+  template: ` <div class="auth-form">
     <ng-content select="h2"></ng-content>
     <form [formGroup]="form" (ngSubmit)="onSend()">
       <label>
@@ -45,11 +45,35 @@ import { Produkt } from '../../../../service/produkte.service';
           placeholder="Preis"
         />
       </label>
-      <label>
-        <h2>Produkt Typ</h2>
-        <product-type formControlName="type"></product-type>
-      </label>
-
+      <div>
+        <label>
+          <h2>Produkt Typ</h2>
+          <product-type formControlName="type"></product-type>
+        </label>
+      </div>
+      <div>
+        <div *ngIf="form.value.type == 'verbrauch'" formGroupName="verbrauch">
+          <input
+            type="number"
+            formControlName="menge"
+            placeholder="Anzahl an Produkten"
+            step="5"
+            min="5"
+            max="10000"
+            value="5"
+          />
+        </div>
+        <div *ngIf="form.value.type == 'gebrauch'" formGroupName="gebrauch">
+          <label>
+            <p>Von</p>
+            <input type="date" formControlName="von" placeholder="Anzahl" />
+          </label>
+          <label>
+            <p>Bis</p>
+            <input type="date" formControlName="bis" placeholder="Anzahl" />
+          </label>
+        </div>
+      </div>
       <div class="auth-form__action">
         <button [disabled]="form.invalid" type="submit">Speichern</button>
       </div>
@@ -63,17 +87,12 @@ import { Produkt } from '../../../../service/produkte.service';
         </button>
       </div>
     </form>
+    {{ form.value | json }}
   </div>`,
 })
 export class ProduktFormComponent implements OnInit {
-  constructor(private fb: FormBuilder) {}
-
   @Input()
   produkt: Produkt | null | undefined;
-  ngOnInit() {
-    if (this.produkt) this.form.patchValue(this.produkt);
-  }
-
   @Output()
   send: EventEmitter<Produkt> = new EventEmitter<Produkt>();
   @Output()
@@ -83,7 +102,20 @@ export class ProduktFormComponent implements OnInit {
     description: ['', Validators.required],
     price: ['', Validators.required],
     type: ['verbrauch', Validators.required],
+    verbrauch: this.fb.group({
+      menge: [''],
+    }),
+    gebrauch: this.fb.group({
+      von: [''],
+      bis: [''],
+    }),
   });
+
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit() {
+    if (this.produkt) this.form.patchValue(this.produkt);
+  }
 
   onSend() {
     if (this.produkt) {

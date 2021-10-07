@@ -53,6 +53,7 @@ export class PlansComponent implements OnInit, OnDestroy {
   edit(plan: Plan) {
     this.router.navigate(['/plans/new', { id: plan.$key }]);
   }
+
   delete(plan: Plan) {
     if (confirm(`Möchtest du den Eintrag "${plan.title}" löschen?`))
       this.service.removePlan(plan);

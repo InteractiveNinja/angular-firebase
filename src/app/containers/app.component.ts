@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnDestroy, OnInit {
   user$: Observable<User> | undefined;
   subscription: Subscription | undefined;
+
   constructor(
     private store: Store,
     private authService: AuthService,
@@ -26,6 +27,7 @@ export class AppComponent implements OnDestroy, OnInit {
     this.subscription = this.authService.auth$.subscribe();
     this.user$ = this.store.select<User>('user');
   }
+
   ngOnDestroy() {
     this.subscription?.unsubscribe();
   }

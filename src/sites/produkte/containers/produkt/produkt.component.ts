@@ -38,6 +38,7 @@ export class ProduktComponent implements OnInit {
   saveData(plan: Produkt) {
     this.service.addPlan(plan).then(() => this.goBack());
   }
+
   editData(plan: Produkt) {
     this.service.editPlan(plan).then(() => this.goBack());
   }

@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './containers/login.component';
@@ -10,6 +10,7 @@ export const ROUTES: Routes = [
     component: LoginComponent,
   },
 ];
+
 @NgModule({
   declarations: [LoginComponent],
   imports: [CommonModule, RouterModule.forChild(ROUTES), SharedModule],

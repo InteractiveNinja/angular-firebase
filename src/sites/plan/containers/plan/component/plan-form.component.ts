@@ -8,9 +8,6 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Plan } from '../../../service/plan.service';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { pluck } from 'rxjs/operators';
 
 @Component({
   selector: 'plan-form',
@@ -57,14 +54,8 @@ import { pluck } from 'rxjs/operators';
   </div>`,
 })
 export class PlanFormComponent implements OnInit {
-  constructor(private fb: FormBuilder) {}
-
   @Input()
   plan: Plan | null | undefined;
-  ngOnInit() {
-    if (this.plan) this.form.patchValue(this.plan);
-  }
-
   @Output()
   send: EventEmitter<Plan> = new EventEmitter<Plan>();
   @Output()
@@ -74,6 +65,13 @@ export class PlanFormComponent implements OnInit {
     description: ['', Validators.required],
     date: ['', Validators.required],
   });
+
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit() {
+    if (this.plan) this.form.patchValue(this.plan);
+  }
+
   onSend() {
     if (this.plan) {
       this.sendEdit.emit({ ...this.form.value, $key: this.plan.$key });

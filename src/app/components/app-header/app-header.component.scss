@@ -3,20 +3,24 @@
   border-bottom: 1px solid #c1cedb;
   padding: 15px 0;
   text-align: center;
+
   img {
     display: inline-block;
   }
+
   &__user-info {
     position: absolute;
     top: 16px;
     right: 0;
     cursor: pointer;
   }
+
   i {
     background-size: contain;
 
     display: block;
     opacity: 0.6;
+
     &:hover {
       opacity: 0.9;
     }

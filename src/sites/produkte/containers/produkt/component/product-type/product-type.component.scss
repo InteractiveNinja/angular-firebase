@@ -1,6 +1,7 @@
 .product-type {
   display: flex;
   justify-content: center;
+
   &__pane {
     flex: 0 0 30%;
     cursor: pointer;
@@ -13,19 +14,24 @@
     border: 1px solid #d1deeb;
     border-radius: 3px;
     transition: all .2s ease-in-out;
+
     &:hover {
       background: darken(#f5f9fd, 3%);
     }
+
     &.active {
       background: darken(#f5f9fd, 3%);
+
       img, p {
         opacity: 1;
       }
     }
+
     i {
       opacity: .6;
       margin: 0 25px 0 0;
     }
+
     p {
       opacity: .6;
       margin: 0;

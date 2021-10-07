@@ -1,12 +1,7 @@
-import { Injectable, OnInit } from '@angular/core';
-import {
-  AngularFireDatabase,
-  AngularFireList,
-  SnapshotAction,
-} from '@angular/fire/compat/database';
+import { Injectable } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Store } from '../../../store';
-import { AuthService, User } from '../../../auth/shared/service/auth.service';
-import { from, Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { filter, map, tap } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
@@ -21,6 +16,7 @@ export interface Plan {
 export class PlanService {
   plan$: Observable<Plan[]> | undefined;
   useruid: string | undefined;
+
   constructor(
     private fb: AngularFireDatabase,
     private store: Store,
@@ -53,6 +49,7 @@ export class PlanService {
   addPlan(plan: Plan) {
     return this.fb.list<Plan>(`plans/${this.useruid}`).push(plan);
   }
+
   removePlan(plan: Plan) {
     return this.fb.list<Plan>(`plans/${this.useruid}/${plan.$key}`).remove();
   }

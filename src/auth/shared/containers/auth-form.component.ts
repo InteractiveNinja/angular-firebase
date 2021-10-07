@@ -42,20 +42,22 @@ export class AuthFormComponent {
 
   @Output()
   submitted: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
-  constructor(private fb: FormBuilder) {}
 
-  onSubmit() {
-    if (this.form.valid) {
-      this.submitted.emit(this.form);
-    }
-  }
+  constructor(private fb: FormBuilder) {}
 
   get PasswordInvalid() {
     const control = this.form.get('password');
     return control?.hasError('required') && control?.touched;
   }
+
   get EmailInvalide() {
     const control = this.form.get('email');
     return control?.hasError('email') && control?.touched;
+  }
+
+  onSubmit() {
+    if (this.form.valid) {
+      this.submitted.emit(this.form);
+    }
   }
 }
