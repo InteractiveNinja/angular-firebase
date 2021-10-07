@@ -14,11 +14,12 @@ export const TYPE_CONTROL_ACCESSOR = {
     <div class="product-type">
       <div
         class="product-type__pane"
-        *ngFor="let selector of selectors"
+        *ngFor="let selector of selectors; let i = index"
         [class.active]="selector === value"
         (click)="setSelected(selector)"
       >
-        <img src="/assets/{{ selector }}.svg" />
+        <!--        <img src="/assets/{{ selector }}.svg" />-->
+        <i [class]="icons[i]"></i>
         <p>{{ selector }}</p>
       </div>
     </div>
@@ -26,6 +27,7 @@ export const TYPE_CONTROL_ACCESSOR = {
 })
 export class ProduktTypeComponent implements ControlValueAccessor {
   selectors = ['verbrauch', 'gebrauch'];
+  icons = ['bi-lightning-fill', 'bi-arrow-repeat'];
 
   value: string | undefined;
 

@@ -15,10 +15,28 @@
 }
 
 span {
-  > img {
+  > i {
     width: 24px;
     cursor: pointer;
   }
 
   padding: 0.3em;
+}
+
+.trash{
+  color: #d51212;
+  &:hover{
+    color: #a40f0f;
+  }
+}
+
+.edit{
+  color: #565656;
+
+  &:hover{
+    color: black;
+
+  }
+
+
 }

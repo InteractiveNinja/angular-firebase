@@ -14,10 +14,10 @@ import { pluck } from 'rxjs/operators';
     </div>
     <div class="item__options">
       <div>
-        <span (click)="deleteItem()"><img src="assets/remove.svg" /></span>
+        <span (click)="deleteItem()"><i class="bi-trash-fill trash"></i></span>
       </div>
       <div>
-        <span (click)="editItem()"><img src="assets/edit.svg" /></span>
+        <span (click)="editItem()"><i class="bi-pencil-fill edit"></i></span>
       </div>
     </div>
   </div>`,

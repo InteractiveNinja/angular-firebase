@@ -3,13 +3,12 @@ import { Produkt, ProdukteService } from '../../service/produkte.service';
 import { Observable, Subscription } from 'rxjs';
 import { Store } from '../../../../store';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'produkte',
   styleUrls: ['./produkte.component.scss'],
   template: ` <div class="plan">
     <div class="plan__title">
-      <img src="assets/chevron-right.svg" />
+      <i class="bi-caret-right-fill"></i>
       <h1>Produkte</h1>
       <a class="btn__add" [routerLink]="['/produkte/new']">Add</a>
     </div>

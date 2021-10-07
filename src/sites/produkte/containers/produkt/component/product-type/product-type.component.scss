@@ -1,5 +1,6 @@
 .product-type {
   display: flex;
+  justify-content: center;
   &__pane {
     flex: 0 0 30%;
     cursor: pointer;
@@ -7,7 +8,7 @@
     align-items: center;
     justify-content: center;
     padding: 15px;
-    margin: 0 15px 0 0;
+    margin: 15px;
     background: #f5f9fd;
     border: 1px solid #d1deeb;
     border-radius: 3px;
@@ -21,10 +22,9 @@
         opacity: 1;
       }
     }
-    img {
+    i {
       opacity: .6;
       margin: 0 25px 0 0;
-      width: 35px;
     }
     p {
       opacity: .6;
