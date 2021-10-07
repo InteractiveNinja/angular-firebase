@@ -30,12 +30,12 @@ export class PlanService {
           .snapshotChanges()
           .pipe(
             map((snapshot) => {
-              let plans: Plan[] = snapshot.map((mm) => ({
-                title: mm.payload.val()?.title || '',
-                description: mm.payload.val()?.description || '',
-                date: mm.payload.val()?.date || '',
-                $key: mm.key || '',
-              }));
+              let plans: Plan[] = snapshot.map((mm) => {
+                return {
+                  ...(mm.payload.val() as Plan),
+                  $key: mm.key || '',
+                };
+              });
               return plans;
             }),
             tap((plans) => {
@@ -64,9 +64,7 @@ export class PlanService {
   }
 
   editPlan(plan: Plan) {
-    const { $key, date, description, title } = plan;
-    return this.fb
-      .object<Plan>(`plans/${this.useruid}/${$key}`)
-      .update({ date, description, title });
+    const { $key, ...item } = plan;
+    return this.fb.object<Plan>(`plans/${this.useruid}/${$key}`).update(item);
   }
 }

@@ -87,7 +87,6 @@ import { Produkt } from '../../../../service/produkte.service';
         </button>
       </div>
     </form>
-    {{ form.value | json }}
   </div>`,
 })
 export class ProduktFormComponent implements OnInit {

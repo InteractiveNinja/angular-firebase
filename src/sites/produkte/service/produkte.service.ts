@@ -39,12 +39,7 @@ export class ProdukteService {
           .pipe(
             map((snapshot) => {
               let produkts: Produkt[] = snapshot.map((mm) => ({
-                title: mm.payload.val()?.title || '',
-                description: mm.payload.val()?.description || '',
-                price: mm.payload.val()?.price || 0,
-                type: mm.payload.val()?.type || '',
-                verbrauch: mm.payload.val()?.verbrauch || { menge: 0 },
-                gebrauch: mm.payload.val()?.gebrauch || { von: '', bis: '' },
+                ...(mm.payload.val() as Produkt),
                 $key: mm.key || '',
               }));
               return produkts;
@@ -63,7 +58,7 @@ export class ProdukteService {
 
   removePlan(plan: Produkt) {
     return this.fb
-      .list<Produkt>(`produkte/${this.useruid}/${plan.$key}`)
+      .object<Produkt>(`produkte/${this.useruid}/${plan.$key}`)
       .remove();
   }
 
@@ -77,9 +72,9 @@ export class ProdukteService {
   }
 
   editPlan(plan: Produkt) {
-    const { $key, price, description, title } = plan;
+    const { $key, ...item } = plan;
     return this.fb
       .object<Produkt>(`produkte/${this.useruid}/${$key}`)
-      .update({ price: price, description, title });
+      .update(item);
   }
 }
